@@ -256,3 +256,23 @@ Exécutez-le sur votre machine locale (ou hébergez-le sur votre serveur), si vo
 Après avoir démarré le serveur de développement, lorsque vous voyez l'écran de connexion, cela signifie que l'application est opérationnelle.
 
 ## Testez votre application
+
+Nous nous connecterons avec un portefeuille de test. Vous pouvez réutiliser le portefeuille propriétaire si vous le souhaitez, ou en créer un nouveau, en suivant les mêmes étapes que vous avez suivies lors de la création du portefeuille du propriétaire.
+
+**Mais je vous rappelle d'utiliser un autre portefeuille que celui qui vous sert à gérer vos cryptos sur le mainnet!**
+
+### L'appel à la fonction Ping
+
+Après vous être connecté, nous verrons le tableau de bord (_Dashboard_) où nous pouvons voir le bouton **Ping**.
+
+Cliquez sur le bouton Ping et vous serez redirigé vers la page d'authentification sur le portefeuille Web, le portefeuille maiar ou votre périphérique d'authentification. Une nouvelle transaction sera créée et il vous sera demandé de la confirmer. Cette transaction transfère le solde de votre portefeuille à l'adresse du smart contract. Ces fonds seront bloqués pour la période de temps spécifiée. Faites attention au champ de données, où nous appelons la fonction de notre smart contract, `ping`. Après avoir confirmé la transaction, un message de réussite apparaîtra et les fonds seront bloqués.
+
+**Attendez l'intervalle de temps !** Vous pouvez voir le temps que vous devez attendre avant de pouvoir faire `pong` et récupérer les fonds.
+
+### L'appel à la fonction Pong
+
+Une fois l'intervalle de temps écoulé, vous pouvez réclamer les fonds en cliquant sur le bouton **Pong**. Une autre transaction attendra d'être traitée, cette fois le montant sera nul, car nous n'avons qu'à appeler la fonction `pong` (spécifiée dans le champ de données). La transaction déclenchera un message de réussite et les fonds seront retournés dans votre portefeuille.
+
+## Quoi faire ensuite ?
+
+Pourquoi ne pas jeter un coup d'oeil au code Rust du smart contract ? Nous vous proposerons des tutoriels explicatifs de smart contract dans le futur, soyez à l'affût ! Et n'hésitez pas à [nous rejoindre](https://discord.gg/djx4xQAa), on vous aidera dans vos projets !
