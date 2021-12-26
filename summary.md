@@ -1,6 +1,5 @@
 # Summary​
-## Introduction
-* [Introduction](./README.md)
+## Introduction (./README.md)
 ## Tutoriels - FR​
 
 * [Premier tutoriel](page1/README.md)    
