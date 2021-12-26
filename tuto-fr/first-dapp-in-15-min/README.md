@@ -8,7 +8,7 @@ Ce tutoriel est aussi disponible en vidéo (en anglais) [ici](https://youtu.be/I
 
 ## Description de la Dapp (Ping-Pong)
 
-![Explication de notre smart contract](tuto-fr/first-dapp-in-15-min/img/sc_overview.png "Vue simplifiée de notre smart contract")
+![Explication de notre smart contract](tuto-fr/first-dapp-in-15-min/img/sc_overview.png "Schéma simplifié de notre smart contract")
 
 L'application Ping-Pong est une **application décentralisée** très simple qui permettra à l'utilisateur de déposer un nombre spécifique de jetons (la valeur par défaut est 1 xEGLD) à une adresse de contrat intelligent (**smart contract**) et de les verrouiller pendant une durée spécifique (la valeur par défaut est de 10 minutes) . Une fois cet intervalle de temps écoulé, l'utilisateur peut réclamer le même nombre de jetons. L'envoi de fonds au contrat est appelé **PING**, réclamer le même montant s'appelle **PONG**.
 
