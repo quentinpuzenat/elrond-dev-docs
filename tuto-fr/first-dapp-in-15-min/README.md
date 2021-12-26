@@ -8,7 +8,7 @@ Ce tutoriel est aussi disponible en vidéo (en anglais) [ici](https://youtu.be/I
 
 ## Description de la Dapp (Ping-Pong)
 
-![Explication de notre smart contract](tuto-fr/first-dapp-in-15-min/img/sc_overview.png?raw=true "Schéma simplifié de notre smart contract")
+![Explication de notre smart contract](img/sc_overview.png?raw=true "Schéma simplifié de notre smart contract")
 
 [<img alt="alt_text" width="40px" src="tuto-fr/first-dapp-in-15-min/img/sc_overview.png" />](tuto-fr/first-dapp-in-15-min/img/sc_overview.png)
 
