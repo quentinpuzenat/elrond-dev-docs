@@ -4,9 +4,8 @@ Apprenez à construire votre première application décentralisée (Dapp pour De
 
 > ⚠️ Veuillez créer un exemple de portefeuille sur Elrond [(ici)](https://devnet-wallet.elrond.com/) et ayez votre phrase de sécurité à portée de main (les 24 mots que l'on vous donne à la création de votre portefeuille). Nous allons travailler sur le Devnet pour cet exemple, vous devez gérer votre portefeuille Web [ici](https://devnet-wallet.elrond.com/).
 
-Ce tutoriel est aussi disponible en vidéo (en anglais):
+Ce tutoriel est aussi disponible en vidéo (en anglais) [ici](https://youtu.be/IdkgvlK3rb8)
 
-https://youtu.be/IdkgvlK3rb8
 
 ## Description de la Dapp (Ping-Pong)
 
@@ -23,13 +22,10 @@ Règles additionnelles de notre smart contract
 
 Vous avez peut-être remarqué que le montant par défaut pour un dépôt est 1 xEGLD et non 1 EGLD qui est le jeton officiel d'Elrond, c'est parce que, à des fins de test, nous utilisons Elrond Devnet, qui est un environnement de test identique au Mainnet, la Blockchain officielle d'Elrond. Ici, la devise est xEGLD, c'est juste un jeton de test, ça ne vaut rien.
 
-<aside> 🌟 Quand vous créez un portefeuille sur Elrond, vous avez en réalité accès aux trois environnements (ou blockchains) d'Elrond Network. L'environnement **Devnet** est l'environnement de développement pour les jeunes projets, le token est le xEGLD qui ne vaut absolument rien. C'est sur ce réseau que nous allons construire notre Dapp. Il existe également l'environnement **Testnet** qui est la blockchain de test, on y retrouve les smarts contracts de différents projets en phase avancée de développement, le token est également le xEGLD. Le dernier environnement est le **Mainnet,** la blockchain principale car celle avec le token EGLD, on y retrouve tous les projets qui se sont lancés sur la blockchain Elrond. **Vos 24 mots prodigués à la création de votre portefeuille sont donc très utiles mais également très importants**, ils sont le gage d'accès à votre portefeuille sur ces 3 blockchains.
+> 🌟 Quand vous créez un portefeuille sur Elrond, vous avez en réalité accès aux trois environnements (ou blockchains) d'Elrond Network. L'environnement **Devnet** est l'environnement de développement pour les jeunes projets, le token est le xEGLD qui ne vaut absolument rien. C'est sur ce réseau que nous allons construire notre Dapp. Il existe également l'environnement **Testnet** qui est la blockchain de test, on y retrouve les smarts contracts de différents projets en phase avancée de développement, le token est également le xEGLD. Le dernier environnement est le **Mainnet,** la blockchain principale car celle avec le token EGLD, on y retrouve tous les projets qui se sont lancés sur la blockchain Elrond. **Vos 24 mots prodigués à la création de votre portefeuille sont donc très utiles mais également très importants**, ils sont le gage d'accès à votre portefeuille sur ces 3 blockchains.
 
-</aside>
 
-<aside> 🚨 **Si vous développez sur Elrond Devnet ou Testnet, utilisez donc un autre portefeuille que celui dont vous vous servez sur le Mainnet, il faudra en effet manipuler votre clé privée (créée à partir des 24 mots) pour certaines opérations. Si vous travaillez avec git, je vous conseille de ne pas prendre de risques si vous êtes débutant et d'utiliser un autre portefeuille.**
-
-</aside>
+> 🚨 **Si vous développez sur Elrond Devnet ou Testnet, utilisez donc un autre portefeuille que celui dont vous vous servez sur le Mainnet, il faudra en effet manipuler votre clé privée (créée à partir des 24 mots) pour certaines opérations. Si vous travaillez avec git, je vous conseille de ne pas prendre de risques si vous êtes débutant et d'utiliser un autre portefeuille.**
 
 ## L'architecture de notre Dapp
 
@@ -39,8 +35,8 @@ Vous avez peut-être remarqué que le montant par défaut pour un dépôt est 1 
 
 Pour l'application web, on aura deux pages:
 
-- La *page de connexion* - nous pouvons nous authentifier avec une ledger, un portefeuille Web Elrond ou avec Maiar Wallet sur téléphone
-- La page *Tableau de bord* - nous pouvons soit déclencher les fonctions ping ou pong du smart contract (à l'aide de boutons à cliquer par exemple), si nous avons déjà déposé, alors nous verrons un compte à rebours jusqu'à ce que l'intervalle de temps ne s'efface.
+- La _page de connexion_ - nous pouvons nous authentifier avec une ledger, un portefeuille Web Elrond ou avec Maiar Wallet sur téléphone
+- La page _Tableau de bord_ - nous pouvons soit déclencher les fonctions ping ou pong du smart contract (à l'aide de boutons à cliquer par exemple), si nous avons déjà déposé, alors nous verrons un compte à rebours jusqu'à ce que l'intervalle de temps ne s'efface.
 
 ### La couche blockchain (le Backend)
 
@@ -48,9 +44,7 @@ Nous allons créer un smart contract qui peut gérer le dépôt (**`ping`**), la
 
 Elrond Devnet est un réseau de test public maintenu par notre communauté où tout développeur peut tester ses smart contracts et ses dApps dans un environnement réel.
 
-<aside> 🌟 La fonction **did_user_ping** nous certifiera si oui ou non un utilisateur a déjà appelé la fonction **ping** de notre smart contract, la fonction **get_time_to_pong** nous renverra le temps restant avant de pouvoir appeler la fonction pong. Ces deux fonctions sont appelées des ***views\*** (des fonctions de consultation) dans la documentation d'Elrond. Ce sont des fonctions à titre informatif seulement, elles ne changent aucune variable sur la blockchain. Nous garderons la dénomination de ***views\*** car elle sera présente dans le code.
-
-</aside>
+> 🌟 La fonction **did_user_ping** nous certifiera si oui ou non un utilisateur a déjà appelé la fonction **ping** de notre smart contract, la fonction **get_time_to_pong** nous renverra le temps restant avant de pouvoir appeler la fonction pong. Ces deux fonctions sont appelées des ***views\*** (des fonctions de consultation) dans la documentation d'Elrond. Ce sont des fonctions à titre informatif seulement, elles ne changent aucune variable sur la blockchain. Nous garderons la dénomination de ***views\*** car elle sera présente dans le code.
 
 ## Préparer l'environnement de développement
 
