@@ -27,7 +27,7 @@ Vous avez peut-être remarqué que le montant par défaut pour un dépôt est 1 
 
 ## L'architecture de notre Dapp
 
-![Capture d’écran 2021-12-16 à 00.04.48.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f7dfeb5e-e997-4c7c-ab47-c34c4d735fe0/Capture_decran_2021-12-16_a_00.04.48.png)
+[<p align="center"><img alt="Architecture d'une dapp" width="500px" src="img/architecture.png" /></p>](img/architecture.png)
 
 ### La couche d'application (le Frontend)
 
@@ -59,7 +59,7 @@ cd ping-pong/wallet
 
 Au final, nous aurons trois sous-dossiers : **\*wallet\***, **\*contract\*** et **\*dapp\***. Pour plus de commodité, nous enregistrerons la clé du portefeuille de notre propriétaire dans le dossier **\*wallet** (portefeuille en anglais)\*.
 
-![Capture d’écran 2021-12-16 à 00.25.12.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a90ec9dc-7d7c-449b-b999-d9ea475ab564/Capture_decran_2021-12-16_a_00.25.12.png)
+[<p align="center"><img alt="Structure de notre projet" width="500px" src="img/project_structure.png" /></p>](img/project_structure.png)
 
 ### Prérequis logiciels
 
