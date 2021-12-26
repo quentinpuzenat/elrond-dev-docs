@@ -8,7 +8,7 @@ Ce tutoriel est aussi disponible en vidéo (en anglais) [ici](https://youtu.be/I
 
 ## Description de la Dapp (Ping-Pong)
 
-[<p align="center"><img alt="Explication de notre smart contract" width="500px" src="img/sc_overview.png" /></p>](img/sc_overview.png)
+<p align="center"><img alt="Explication de notre smart contract" width="500px" src="img/sc_overview.png" /></p>
 
 L'application Ping-Pong est une **application décentralisée** très simple qui permettra à l'utilisateur de déposer un nombre spécifique de jetons (la valeur par défaut est 1 xEGLD) à une adresse de contrat intelligent (**smart contract**) et de les verrouiller pendant une durée spécifique (la valeur par défaut est de 10 minutes) . Une fois cet intervalle de temps écoulé, l'utilisateur peut réclamer le même nombre de jetons. L'envoi de fonds au contrat est appelé **PING**, réclamer le même montant s'appelle **PONG**.
 
@@ -27,7 +27,7 @@ Vous avez peut-être remarqué que le montant par défaut pour un dépôt est 1 
 
 ## L'architecture de notre Dapp
 
-[<p align="center"><img alt="Architecture d'une dapp" width="500px" src="img/architecture.png" /></p>](img/architecture.png)
+<p align="center"><img alt="Architecture d'une dapp" width="500px" src="img/architecture.png" /></p>
 
 ### La couche d'application (le Frontend)
 
@@ -59,7 +59,7 @@ cd ping-pong/wallet
 
 Au final, nous aurons trois sous-dossiers : **\*wallet\***, **\*contract\*** et **\*dapp\***. Pour plus de commodité, nous enregistrerons la clé du portefeuille de notre propriétaire dans le dossier **\*wallet** (portefeuille en anglais)\*.
 
-[<p align="center"><img alt="Structure de notre projet" width="500px" src="img/project_structure.png" /></p>](img/project_structure.png)
+<p align="center"><img alt="Structure de notre projet" width="500px" src="img/project_structure.png" /></p>
 
 ### Prérequis logiciels
 
