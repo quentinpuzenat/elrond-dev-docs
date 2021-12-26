@@ -5,6 +5,6 @@ We assume that you are bit familiar with Rust, nevertheless feel free to dig in 
 
 We are a french community, so you will find french and english content as long as we have the time to translate properly.
 
-Feel free to join us if you are interested in building on Elrond Network (french discord): https://discord.gg/djx4xQAa
-You can also join the official dev telegram (english content): https://t.me/ElrondDevelopers
+Feel free to join us [_**here**_](https://discord.gg/djx4xQAa) if you are interested in building on Elrond Network (french discord): 
+You can also join the official dev telegram [_**here**_](https://t.me/ElrondDevelopers) (english content): 
 
