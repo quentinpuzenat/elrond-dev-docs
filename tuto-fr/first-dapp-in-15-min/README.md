@@ -206,3 +206,53 @@ Nous avons également deux autres fonctions définies dans le smart contract: `g
 ## La couche de l'application - l'application web
 
 Passons maintenant à la couche de l'application web ! Ce que vos utilisateurs verront sur leurs écrans et qui va nous être utile pour déclencher les différents appels à nos fonctions.
+
+### Cloner l'application de base
+
+Nous allons cloner un modèle de dApp très simple qui implémente les appels à notre smart contract nouvellement déployé.
+
+```bash
+git clone https://github.com/ElrondNetwork/dapp-template dapp
+cd dapp
+```
+
+### Configurer l'application web
+
+Personnalisons l'adresse de notre smart contract !
+
+Copions notre `config.devnet.tsx` dans un nouveau fichier `config.tsx` et changeons la constante **contractAddress** avec l'adresse de notre smart contract.
+
+```bash
+cp src/config.devnet.tsx src/config.tsx
+nano src/config.tsx
+```
+
+Jetons un œil à la ligne 15:
+
+`export const contractAddress = 'erd1qqqqqqqq....';`
+
+et remplaçons la par l'adresse de notre contrat qui a été affichée après le déploiement du contrat avec erdpy:
+
+`export const contractAddress = 'erd1qqqqqqqqqqqqqpgq0hmfvuygs34cgqsvg...ffh4y04cysagr6cn';`
+
+Enregistrez et fermez `config.tsx` et nous sommes prêts pour voir la première version de notre application web.
+
+### Construire la Dapp
+
+On va tout d'abord installer les dépendances avec `npm`.
+
+```bash
+npm install
+```
+
+puis nous allons démarrer un serveur de développement pour tester notre nouvelle dApp
+
+```bash
+npm run start
+```
+
+Exécutez-le sur votre machine locale (ou hébergez-le sur votre serveur), si vous démarrez le serveur de développement sur votre machine locale, ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur. Si vous le démarrez sur votre propre serveur, vous pouvez accéder à [http://:3000](http://:3000). La version construite ne contient que des fichiers statiques, donc n'importe quel fournisseur d'hébergement fera l'affaire.
+
+Après avoir démarré le serveur de développement, lorsque vous voyez l'écran de connexion, cela signifie que l'application est opérationnelle.
+
+## Testez votre application
