@@ -192,3 +192,17 @@ erdpy contract deploy
 Nous allons jeter un œil à la sortie de notre terminal. Nous avons 2 éléments qui nécessitent notre attention : l\'**adresse** du contrat et le **hash de la transaction**. Vérifions-les dans [l'Explorer du Devnet](https://devnet-explorer.elrond.com/).
 
 l'Explorer du Devnet sera votre meilleur ami pour développer des dApps sur la Blockchain Elrond, car vous allez d'abord déployer et tester vos dApps sur le Devnet.
+
+INFO:accounts:Account.sync_nonce() INFO:accounts:Account.sync_nonce() done: 32 INFO:cli.contracts:Contract address: erd1qqqqqqqqqqqqqpgq0hmfvuygs34cgqsvgg6fpq9c5mffh4y04cysagr6cn INFO:utils:View this contract address in the Elrond Devnet Explorer: [https://devnet-explorer.elrond.com/accounts/erd1qqqqqqqqqqqqqpgq0hmfvuygs34cgqsvgg6fpq9c5mffh4y04cysagr6cn](https://devnet-explorer.elrond.com/accounts/erd1qqqqqqqqqqqqqpgq0hmfvuygs34cgqsvgg6fpq9c5mffh4y04cysagr6cn) INFO:transactions:Transaction.send: nonce=32 INFO:transactions:Hash: ee84f3e833d439e159c9619fd76e26d2afcdad62c197d87e4940072f18558153 INFO:utils:View this transaction in the Elrond Devnet Explorer: [https://devnet-explorer.elrond.com/transactions/ee84f3e833d439e159c9619fd76e26d2afcdad62c197d87e4940072f18558153](https://devnet-explorer.elrond.com/transactions/ee84f3e833d439e159c9619fd76e26d2afcdad62c197d87e4940072f18558153)
+
+Le smart contract est désormais déployé sur la blockchain. Nous pouvons interagir avec lui en utilisant des transactions afin d'invoquer des fonctions de ce smart contract, `ping` ou `pong`.
+
+Le code source du smart contract réside dans `ping-pong-smart-contract/ping-pong/src/ping_pong.rs`
+
+Il y a deux fonctions principales : `ping` et `pong`, celles-ci sont invoquées à l'aide de transactions sur la blockchain.
+
+Nous avons également deux autres fonctions définies dans le smart contract: `get_time_to_pong` et `did_user_ping`, ces fonctions de **vue** sont invoquées à l'aide de l'API Elrond ([https://devnet-api.elrond.com/vm-values/query](https://devnet-api.elrond.com/vm-values/query)).
+
+## La couche de l'application - l'application web
+
+Passons maintenant à la couche de l'application web ! Ce que vos utilisateurs verront sur leurs écrans et qui va nous être utile pour déclencher les différents appels à nos fonctions.
