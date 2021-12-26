@@ -121,3 +121,74 @@ Entrez vos **24 mots secrets** lorsque vous y serez invité et un nouveau fichie
 Afin d'initier des transactions sur la blockchain, nous avons besoin de fonds, chaque transaction coûte très peu de frais, sur la blockchain, cela s'appelle du **gaz**. Sur le portefeuille **Devnet**, nous avons un onglet **Faucet** qui vous permet d'obtenir des fonds de test gratuits pour nos applications. Nous pouvons demander 10 xEGLD toutes les 24 heures, alors demandons 10 xEGLD maintenant. Nous vérifions maintenant si la transaction a réussi, et oui, nous voyons que nous avons maintenant 10 xEGLD dans notre portefeuille Devnet.
 
 ## La couche blockchain - Le smart contract
+
+Notre portefeuille propriétaire est maintenant complètement configuré, nous pouvons passer à notre backend, la couche blockchain.
+
+### Cloner le template
+
+Commençons par notre csmart contract. Nous allons d'abord cloner le repository github du contrats à partir de [ce lien](https://github.com/ElrondNetwork/ping-pong-smart-contract).
+
+```bash
+cd ~/ping-pong
+git clone https://github.com/ElrondNetwork/ping-pong-smart-contract contract
+cd contract/ping-pong
+```
+
+### Construire le smart contract
+
+Nous avons maintenant le code source du smart contract, mais nous devons le **compiler** en un fichier codé en binaire que l'Elrond Virtual Machine (Arwen) pourra exécuter. Arwen peut exécuter du code Web Assembly, nous devons donc compiler notre code source Rust dans Web Assembly (WASM).
+
+Exécutez la commande suivante afin de construire le smart contract codé en rust dans un nouveau **fichier wasm**.
+
+```bash
+erdpy contract build
+```
+
+Sur la dernière ligne de votre réponse du terminal, vous verrez:
+
+```bash
+INFO:projects.core:WASM file generated: output/ping-pong.wasm
+```
+
+Après avoir exécuté cette ligne de commande, nous voyons qu'un **fichier wasm** a été généré. Ce fichier contient le code d'exécution de notre smart contract interprétable par la machine virtuelle d'Elrond, Arwen.
+
+### Customiser et dépolyer
+
+Déployer le smart contract sur Elrond Devnet, l'étape suivante consiste à déployer le contrat sur la blockchain (le **mainnet**).
+
+#### Customiser les variables
+
+En option, nous pouvons personnaliser les paramètres par défaut dans `erdpy.json`:
+
+```json
+{
+  "configurations": {
+    "default": {
+      "proxy": "https://devnet-api.elrond.com",
+      "chainID": "D"
+    }
+  },
+  "contract": {
+    "deploy": {
+      "verbose": true,
+      "bytecode": "output/ping-pong.wasm",
+      "recall-nonce": true,
+      "pem": "../../wallet/wallet-owner.pem",
+      "gas-limit": 60000000,
+      "arguments": [1000000000000000000, 600],
+      "send": true,
+      "outfile": "deploy-testnet.interaction.json"
+    }
+  }
+}
+```
+
+Assurez-vous que le _fichier PEM de votre portefeuille propriétaire_ se trouve dans le bon dossier, que le smart contract est créé et passons maintenant au déploiement! Pour l'instant, continuons avec les valeurs par défaut. Nous exécuterons :
+
+```bash
+erdpy contract deploy
+```
+
+Nous allons jeter un œil à la sortie de notre terminal. Nous avons 2 éléments qui nécessitent notre attention : l\'**adresse** du contrat et le **hash de la transaction**. Vérifions-les dans [l'Explorer du Devnet](https://devnet-explorer.elrond.com/).
+
+l'Explorer du Devnet sera votre meilleur ami pour développer des dApps sur la Blockchain Elrond, car vous allez d'abord déployer et tester vos dApps sur le Devnet.
