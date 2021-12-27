@@ -43,3 +43,19 @@ pub trait Adder {
     }
 }
 ```
+
+### Mise en place de l'environnement
+
+```rust
+#![no_std]
+
+elrond_wasm::imports!();
+```
+
+La bibliothèque standard de Rust fournit de nombreuses fonctionnalités utiles, mais prend en charge diverses fonctionnalités de son système hôte : threads, mise en réseau, allocation sur le tas (le heap pour les anglophones) et autres. Cependant, certains systèmes ne disposent pas de ces fonctionnalités, et c'est le cas de la blockchain Elrond !
+
+Mais il n'y a pas de soucis, Rust peut également fonctionner avec ces systèmes ! Pour ce faire, nous disons à Rust que nous ne voulons pas utiliser la bibliothèque standard via un attribut : `#![no_std]`.
+
+On veillera donc à mettre `#![no_std]` au début de nos différents codes Rust lorsqu'on codera nos smarts contracts.
+
+Quand à `elrond_wasm::imports!();`, on utilise la macro `imports` qui nous sert simplement à importer toutes les fonctions, traits, types, macros etc.. utiles pour la création de smart contracts en Rust sur la blockchain Elrond.
