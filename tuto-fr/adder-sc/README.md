@@ -115,7 +115,7 @@ La deuxième annotation `#[view(getSum)]` permet de rendre la fonction visible p
 
 Maintenant que vous savez stocker une variable et connaître sa valeur une fois stockée, il ne vous reste plus qu'à pouvoir la mettre à jour. Vous pouvez tout simplement choisir de la mettre à jour en renseignant la valeur que vous voulez dans `set` mais il parait plus intéressant d'aussi pouvoir la mettre à jour en se basant sur sa valeur déjà stockée.
 
-Pour cela, vous avez la possibilité d'utiliser `upgrade` qui prendra en argument une [**closure**](https://jimskapt.github.io/rust-book-fr/ch13-01-closures.html) (ou fermeture en français).
+Pour cela, vous avez la possibilité d'utiliser `update` qui prendra en argument une [**closure**](https://jimskapt.github.io/rust-book-fr/ch13-01-closures.html) (ou fermeture en français).
 
 ```rust
     // Ajoutez la quantité souhaitée à la variable de stockage
@@ -127,7 +127,7 @@ Pour cela, vous avez la possibilité d'utiliser `upgrade` qui prendra en argumen
     }
 ```
 
-La fonction `add` répond à notre besoin avec l'utilisation de `upgrade` et de la closure qui prend `sum` en argument (`sum` représente la valeur que l'on a déjà en stockage) et renvoie `sum` plus une valeur `value` que l'on renseigne en argument lorsqu'on appelle la fonction `add`.
+La fonction `add` répond à notre besoin avec l'utilisation de `update` et de la closure qui prend `sum` en argument (`sum` représente la valeur que l'on a déjà en stockage) et renvoie `sum` plus une valeur `value` que l'on renseigne en argument lorsqu'on appelle la fonction `add`.
 
 Ainsi, on a ce comportement:
 
