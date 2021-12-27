@@ -33,6 +33,7 @@ pub trait Adder {
     }
 
     // fonction utile au stockage et à la consultation de notre valeur
+    #[view(getSum)]
     #[storage_mapper("sum")]
     fn sum(&self) -> SingleValueMapper<BigInt>;
 
@@ -84,7 +85,8 @@ L'annotation `#[init]` sert à indiquer que la fonction qui suit cette annotatio
 Pour comprendre comment on stocke la valeur voulue à la ligne 13 de notre programme, penchons nous sur la fonction de stockage `sum`.
 
 ```rust
-// fonction utile au stockage et à la consultation de notre valeur
+    // fonction utile au stockage et à la consultation de notre valeur
+    #[view(getSum)]
     #[storage_mapper("sum")]
     fn sum(&self) -> SingleValueMapper<BigInt>;
 ```
@@ -106,3 +108,41 @@ self.sum().get(); // on retrouve la valeur stockée
 ```
 
 Pour plus de détails, et pour voir les différents `StorageMapper` possibles, voici la [documentation associée](https://docs.rs/elrond-wasm/0.22.1/elrond_wasm/storage/mappers/index.html).
+
+La deuxième annotation `#[view(getSum)]` permet de rendre la fonction visible par des smarts contracts ou programmes extérieurs.
+
+### Mettre à jour notre variable
+
+Maintenant que vous savez stocker une variable et connaître sa valeur une fois stockée, il ne vous reste plus qu'à pouvoir la mettre à jour. Vous pouvez tout simplement choisir de la mettre à jour en renseignant la valeur que vous voulez dans `set` mais il parait plus intéressant d'aussi pouvoir la mettre à jour en se basant sur sa valeur déjà stockée.
+
+Pour cela, vous avez la possibilité d'utiliser `upgrade` qui prendra en argument une [**closure**](https://jimskapt.github.io/rust-book-fr/ch13-01-closures.html) (ou fermeture en français).
+
+```rust
+    // Ajoutez la quantité souhaitée à la variable de stockage
+    #[endpoint] // pareil que pour l'annotation #[view]
+    fn add(&self, value: BigInt) -> SCResult<()> {
+        self.sum().update(|sum| *sum += value);
+
+        Ok(())
+    }
+```
+
+La fonction `add` répond à notre besoin avec l'utilisation de `upgrade` et de la closure qui prend `sum` en argument (`sum` représente la valeur que l'on a déjà en stockage) et renvoie `sum` plus une valeur `value` que l'on renseigne en argument lorsqu'on appelle la fonction `add`.
+
+Ainsi, on a ce comportement:
+
+```rust
+fn abc(&self) -> BigInt {
+    let my_big_int = BigInt::from(2)
+    self.sum().set(&my_big_int); // on stocke 2 (ici un BigInt) qui est la valeur de my_big_int
+    self.add(BigInt::from(4)); // on ajoute 4 (ici un BigInt) avec la fonction add
+    self.sum().get() // on renvoie 6 (ici un BigInt)
+}
+```
+
+Enfin, il est important de noter que add renvoie un `SCResult<()>`. Ici, ce `SCResult<()>` est utile pour savoir si une erreur se produit durant l'appel à `add`. Pour plus d'infos sur `SCResult<()>`, allez sur cette [documentation](https://docs.rs/elrond-wasm/0.22.1/elrond_wasm/types/enum.SCResult.html).
+
+### Conclusion
+
+Vou savez maintenant stocker une valeur **on-chain** et vous savez utiliser le `StorageMapper` le plus simple de la documentation Elrond. Vous savez aussi créer un smart contract sur la blockchain Elrond avec une implémentation simple.
+N'hésitez pas à me faire des retours et à me suivre sur twitter: [@big_q\_\_](https://twitter.com/big_q__)
