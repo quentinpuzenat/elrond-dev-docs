@@ -133,9 +133,9 @@ Ainsi, on a ce comportement:
 
 ```rust
 fn abc(&self) -> BigInt {
-    let my_big_int = BigInt::from(2)
+    let my_big_int = BigInt::from_i32(2)
     self.sum().set(&my_big_int); // on stocke 2 (ici un BigInt) qui est la valeur de my_big_int
-    self.add(BigInt::from(4)); // on ajoute 4 (ici un BigInt) avec la fonction add
+    self.add(BigInt::from_i32(4)); // on ajoute 4 (ici un BigInt) avec la fonction add
     self.sum().get() // on renvoie 6 (ici un BigInt)
 }
 ```
