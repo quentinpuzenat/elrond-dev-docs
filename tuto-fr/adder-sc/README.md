@@ -14,27 +14,30 @@ Rentrons maintenant dans le vif du sujet!
 
 Voici le code en **Rust** du smart contract qui nous intéresse:
 
-> Je pars du principe que vous des notions de **Rust** pour suivre ce tutoriel. Si ce n'est pas le cas voici une source en français: [Le Rust book en français](https://jimskapt.github.io/rust-book-fr/)
+> Je pars du principe que vous avez des notions de **Rust** pour suivre ce tutoriel. Si ce n'est pas le cas voici une source en français: [Le Rust book en français](https://jimskapt.github.io/rust-book-fr/)
 
 ```rust
 #![no_std]
 
 elrond_wasm::imports!();
 
-/// One of the simplest smart contracts possible,
-/// it holds a single variable in storage, which anyone can increment.
-#[elrond_wasm::derive::contract]
+/// L'un des smarts contrats les plus simples possibles,
+/// Il contient une seule variable en stockage, que n'importe qui peut incrémenter.
+#[elrond_wasm::contract]
 pub trait Adder {
-    #[view(getSum)]
-    #[storage_mapper("sum")]
-    fn sum(&self) -> SingleValueMapper<Self::Storage, Self::BigInt>;
 
+    // intitialisation de notre smart contract
     #[init]
     fn init(&self, initial_value: Self::BigInt) {
         self.sum().set(&initial_value);
     }
 
-    /// Add desired amount to the storage variable.
+    // Connaître la valeur stockée
+    #[view(getSum)]
+    #[storage_mapper("sum")]
+    fn sum(&self) -> SingleValueMapper<Self::Storage, Self::BigInt>;
+
+    // Ajoutez la quantité souhaitée à la variable de stockage
     #[endpoint]
     fn add(&self, value: Self::BigInt) -> SCResult<()> {
         self.sum().update(|sum| *sum += value);
@@ -58,4 +61,31 @@ Mais il n'y a pas de soucis, Rust peut également fonctionner avec ces systèmes
 
 On veillera donc à mettre `#![no_std]` au début de nos différents codes Rust lorsqu'on codera nos smarts contracts.
 
-Quand à `elrond_wasm::imports!();`, on utilise la macro `imports` qui nous sert simplement à importer toutes les fonctions, traits, types, macros etc.. utiles pour la création de smart contracts en Rust sur la blockchain Elrond.
+Quand à `elrond_wasm::imports!();`, on utilise la macro `imports` qui nous sert simplement à importer tout ce qui va nous être utile pour la création de smart contracts en Rust sur la blockchain Elrond. Cela inclue:
+
+```rust
+use elrond_wasm::{Box, Vec, String, VarArgs, SCError, BorrowedMutStorage};
+use elrond_wasm::{H256, Address, StorageKey, ErrorMessage};
+use elrond_wasm::{ContractHookApi, ContractIOApi, BigIntApi, BigUintApi, OtherContractHandle, AsyncCallResult, AsyncCallError};
+use elrond_wasm::esd_light::{Encode, Decode, DecodeError};
+use elrond_wasm::io::*;
+use elrond_wasm::err_msg;
+use core::ops::{Add, Sub, Mul, Div, Rem};
+use core::ops::{AddAssign, SubAssign, MulAssign, DivAssign, RemAssign};
+use core::ops::{BitAnd, BitOr, BitXor, Shr, Shl};
+use core::ops::{BitAndAssign, BitOrAssign, BitXorAssign, ShrAssign, ShlAssign};
+```
+
+### Création d'un smart contract
+
+```rust
+
+#[elrond_wasm::contract] // annotation nécessaire pour un smart contract
+pub trait Adder {
+
+    #[init] // annotation nécessaire pour la fonction d'initialisation de notre smart contract
+    fn init(&self, initial_value: Self::BigInt) {
+        self.sum().set(&initial_value);
+    }
+}
+```
