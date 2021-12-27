@@ -33,7 +33,6 @@ pub trait Adder {
     }
 
     // fonction utile au stockage et à la consultation de notre valeur
-    #[view(getSum)]
     #[storage_mapper("sum")]
     fn sum(&self) -> SingleValueMapper<BigInt>;
 
@@ -66,7 +65,6 @@ Quand à `elrond_wasm::imports!();`, on utilise la macro `imports` qui nous sert
 ### Création d'un smart contract
 
 ```rust
-
 #[elrond_wasm::contract] // annotation nécessaire pour un smart contract
 pub trait Adder {
 
@@ -82,3 +80,29 @@ L'annotation `#[elrond_wasm::contract]` sert à indiquer que le trait `Adder` es
 L'annotation `#[init]` sert à indiquer que la fonction qui suit cette annotation (dans notre cas la fonction `init`) ne doit être appelé qu'au déploiement de notre smart contract. Ici, on voit que notre fonction `init` prend en argument `&self` et `initial_value` et qu'elle stocke la valeur de `initial_value`. Ce stockage est possible grâce à l'appel de notre fonction `sum`.
 
 ### Stocker une variable
+
+Pour comprendre comment on stocke la valeur voulue à la ligne 13 de notre programme, penchons nous sur la fonction de stockage `sum`.
+
+```rust
+// fonction utile au stockage et à la consultation de notre valeur
+    #[storage_mapper("sum")]
+    fn sum(&self) -> SingleValueMapper<BigInt>;
+```
+
+Intéressons nous à l'annotation `#[storage_mapper("sum")]`.
+
+Cette annotation nous indique que notre fonction est en réalité un `StorageMapper` appelé `SingleValueMapper` comme on peut le voir dans ce que retourne notre fonction. Ce `SingleValueMapper` permet, en bref, de stocker une variable avec `set`et de connaître la valeur stockée avec `get`. Ainsi, lorsqu'on appelle notre fonction `sum` dans `init`:
+
+```rust
+self.sum().set(&initial_value); // on stocke la valeur de initial_value
+```
+
+On indique que nous voulons accéder à notre `SingleValueMapper` avec `self.sum()` et ensuite nous appelons `set` avec comme argument `&initial_value`. Nous venons donc de stocker la valeur `&initial_value` sur la blockchain.
+
+De la même manière, pour connaître la valeur stockée nous avons seulement à écrire:
+
+```rust
+self.sum().get(); // on retrouve la valeur stockée
+```
+
+Pour plus de détails, et pour voir les différents `StorageMapper` possibles, voici la [documentation associée](https://docs.rs/elrond-wasm/0.22.1/elrond_wasm/storage/mappers/index.html).
