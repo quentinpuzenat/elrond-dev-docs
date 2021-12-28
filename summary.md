@@ -1,10 +1,10 @@
 # Summary​
 
-## [Introduction](README.md)
+## [Introduction](./)
 
-## [Tutoriels - FR](tuto-fr/README.md)​
+## [Tutoriels - FR](tutorials/tuto-fr/)​
 
-- [Comment créer sa première Dapp en 15 min](tuto-fr/first-dapp-in-15-min/README.md)
-- [Explication du smart contract Adder](tuto-fr/adder-sc/README.md)
+* [Comment créer sa première Dapp en 15 min](tutorials/tuto-fr/first-dapp-in-15-min.md)
+* [Explication du smart contract Adder](tutorials/tuto-fr/adder-sc.md)
 
-## [Tutorials - ENG](tuto-eng/README.md)​
+## [Tutorials - ENG](tutorials/tuto-eng.md)​
